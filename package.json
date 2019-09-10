@@ -1,9 +1,9 @@
 {
-  "name": "@marius/broncochip",
+  "name": "@marius/broncochiplist",
   "version": "1.0.0",
-  "identifier": "bronco-chip",
-  "identifier-git": "broncochip",
-  "description": "Leightweight chip",
+  "identifier": "bronco-chip-list",
+  "identifier-git": "broncochiplist",
+  "description": "Leightweight list for bronco-chips",
   "private": true,
   "main": "index.js",
   "scripts": {
