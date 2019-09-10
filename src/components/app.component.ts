@@ -1,6 +1,5 @@
 import { css, customElement, html, LitElement, property, unsafeCSS, query } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
-import 'materialize/index';
 
 const componentCSS = require('./app.component.scss');
 
