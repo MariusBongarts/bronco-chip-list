@@ -156,7 +156,7 @@ ${this.chips.map((chip, index) => html`
 >${chip}</bronco-chip>
 `)}
 
-    <input focus="true" placeholder=${this.markedToSubmit ? 'ENTER to save' : 'Add tag'} type="text" class="form-control ${this.chips.length ? 'not-empty' : ''}" name="tag"  id="tag"  @keyup=${(e: any) => this.submitChip(e)}>
+    <input focus="true" placeholder=${this.markedToSubmit ? 'Save' : 'Add tag'} type="text" class="form-control ${this.chips.length ? 'not-empty' : ''}" name="tag"  id="tag"  @keyup=${(e: any) => this.submitChip(e)}>
 </div>
 `;
   }
