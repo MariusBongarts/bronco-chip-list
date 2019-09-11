@@ -36,7 +36,7 @@ export class BroncoChipList extends LitElement {
    * @memberof BroncoChipList
    */
   @property()
-  focused = false;
+  focused = true;
 
   /**
    * Property to prevent to fast deleting. So that user has to click backspace twice.
@@ -58,7 +58,7 @@ export class BroncoChipList extends LitElement {
     document.addEventListener('click', () => this.markedToDelete = false);
 
     document.addEventListener('blur', (e) => console.log(e));
-    this.focused ? this.inputElement.focus() : '';
+    this.focused ? this.focus() : '';
   }
 
   emit() {
@@ -141,8 +141,6 @@ export class BroncoChipList extends LitElement {
   }
 
   filterChips(event: CustomEvent, chip: string) {
-    event.preventDefault();
-    event.stopPropagation();
     this.chips = this.chips.filter(e => e !== chip);
   }
 
@@ -156,7 +154,7 @@ ${this.chips.map((chip, index) => html`
 >${chip}</bronco-chip>
 `)}
 
-    <input focus="true" placeholder=${this.markedToSubmit ? 'Save' : 'Add tag'} type="text" class="form-control ${this.chips.length ? 'not-empty' : ''}" name="tag"  id="tag"  @keyup=${(e: any) => this.submitChip(e)}>
+    <input placeholder=${this.markedToSubmit ? 'Save' : 'Add tag'} type="text" class="form-control ${this.chips.length ? 'not-empty' : ''}" name="tag"  id="tag"  @keyup=${(e: any) => this.submitChip(e)}>
 </div>
 `;
   }
