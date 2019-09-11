@@ -6,6 +6,7 @@ const componentCSS = require('./app.component.scss');
 /**
  * Modern chip
  * @event tagsChanged - Dispatched when tags changed and returns array of tags
+ * @event submitTriggered - Submit event when user enters 'ENTER' twise
  * @slot - Default content.
  * @cssprop --bg-color - Background color
  * @cssprop --color - Font color

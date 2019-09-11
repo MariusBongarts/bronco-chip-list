@@ -32,16 +32,20 @@ Modern chip
 
 ### Properties
 
-| Property         | Type       | Default | Description                                      |
-|------------------|------------|---------|--------------------------------------------------|
-| `chips`          | `string[]` |         | Array of tags as strings                         |
-| `markedToDelete` | `boolean`  | false   | Property to prevent to fast deleting. So that user has to click backspace twice. |
+| Property         | Type               | Default      | Description                                      |
+|------------------|--------------------|--------------|--------------------------------------------------|
+| `chips`          | `string[]`         |              | Array of tags as strings                         |
+| `focused`        | `boolean`          | false        | Property to set focus on input initially         |
+| `inputElement`   | `HTMLInputElement` | **required** |                                                  |
+| `markedToDelete` | `boolean`          | false        | Property to prevent to fast deleting. So that user has to click backspace twice. |
+| `markedToSubmit` | `boolean`          | false        | Property to trigger submit after entering ENTER twice |
 
 ### Events
 
-| Event         | Description                                      |
-|---------------|--------------------------------------------------|
-| `tagsChanged` | Dispatched when tags changed and returns array of tags |
+| Event             | Description                                      |
+|-------------------|--------------------------------------------------|
+| `submitTriggered` | Submit event when user enters 'ENTER' twise      |
+| `tagsChanged`     | Dispatched when tags changed and returns array of tags |
 
 ### CSS Custom Properties
 
