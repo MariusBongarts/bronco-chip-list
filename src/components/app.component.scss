@@ -30,6 +30,10 @@ bronco-chip {
   box-shadow: 2px 2px 4px 4px var(--primary-color);
 }
 
+.chip-list.marked-to-submit {
+  box-shadow: 2px 2px 4px 4px #79ff79;
+}
+
 .chip-list > bronco-chip {
   display: flex;
   margin: 2px 2px;
@@ -54,7 +58,7 @@ input:focus {
 }
 
 input:focus .chip-list {
-  box-shadow: 2px 2px 4px 4px red;
+  box-shadow: 2px 2px 4px 4px rgba(126, 0, 0, 0.445);
 }
 
 input::placeholder {

@@ -1204,6 +1204,12 @@
          */
 
 /**
+         * Property to trigger submit after entering ENTER twice
+         *
+         * @memberof BroncoChipList
+         */
+
+/**
      * Listen to keyboard event to either add or remove tags
      * Tags are being added when user enters space or enter
      *

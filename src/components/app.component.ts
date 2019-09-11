@@ -45,6 +45,14 @@ export class BroncoChipList extends LitElement {
   @property()
   markedToDelete = false;
 
+  /**
+   * Property to trigger submit after entering ENTER twice
+   *
+   * @memberof BroncoChipList
+   */
+  @property()
+  markedToSubmit = false;
+
   firstUpdated() {
     document.addEventListener('click', () => this.markedToDelete = false);
 
@@ -70,14 +78,33 @@ export class BroncoChipList extends LitElement {
    */
   submitChip(e: KeyboardEvent) {
     const target = e.target as HTMLInputElement;
-    target.value ? this.markedToDelete = false : '';
+
+    if (target.value) {
+      this.markedToDelete = false;
+      this.markedToSubmit = false;
+    }
+
+    if (!target.value && e.key === 'Enter') {
+      if (this.markedToSubmit) {
+        this.markedToSubmit = false;
+        this.dispatchEvent(
+          new CustomEvent('submitTriggered', {
+            bubbles: true,
+            detail: this.chips
+          }));
+      } else {
+        this.markedToSubmit = true;
+      }
+    }
 
     if (target.value && (e.key === 'Enter' || e.code === 'Space')) {
       this.addChip(target);
+      this.markedToSubmit = false;
     }
 
     if (e.key === 'Backspace' && this.chips.length && !target.value.length) {
       this.deleteChip(target);
+      this.markedToSubmit = false;
     }
 
     this.emit();
@@ -120,7 +147,7 @@ export class BroncoChipList extends LitElement {
 
   render() {
     return html`
-<div class="chip-list">
+<div class="chip-list ${this.markedToSubmit ? 'marked-to-submit' : ''}">
 ${this.chips.map((chip, index) => html`
 <bronco-chip @click=${(e: Event) => e.preventDefault()} .deleteMode="${this.markedToDelete && index === this.chips.length - 1}"
 @deleted=${(e: CustomEvent) => this.filterChips(e, chip)}
@@ -128,7 +155,7 @@ ${this.chips.map((chip, index) => html`
 >${chip}</bronco-chip>
 `)}
 
-    <input focus="true" placeholder="Add tag" type="text" class="form-control ${this.chips.length ? 'not-empty' : ''}" name="tag"  id="tag"  @keyup=${(e: any) => this.submitChip(e)}>
+    <input focus="true" placeholder=${this.markedToSubmit ? 'ENTER to save' : 'Add tag'} type="text" class="form-control ${this.chips.length ? 'not-empty' : ''}" name="tag"  id="tag"  @keyup=${(e: any) => this.submitChip(e)}>
 </div>
 `;
   }
