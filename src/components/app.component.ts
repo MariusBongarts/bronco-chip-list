@@ -47,6 +47,8 @@ export class BroncoChipList extends LitElement {
 
   firstUpdated() {
     document.addEventListener('click', () => this.markedToDelete = false);
+
+    document.addEventListener('blur', (e) => console.log(e));
     this.focused ? this.inputElement.focus() : '';
   }
 
@@ -110,17 +112,23 @@ export class BroncoChipList extends LitElement {
     }
   }
 
+  filterChips(event: CustomEvent, chip: string) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.chips = this.chips.filter(e => e !== chip);
+  }
+
   render() {
     return html`
 <div class="chip-list">
 ${this.chips.map((chip, index) => html`
-<bronco-chip .deleteMode="${this.markedToDelete && index === this.chips.length - 1}"
-@deleted=${() => this.chips = this.chips.filter(e => e !== chip)}
+<bronco-chip @click=${(e: Event) => e.preventDefault()} .deleteMode="${this.markedToDelete && index === this.chips.length - 1}"
+@deleted=${(e: CustomEvent) => this.filterChips(e, chip)}
 
 >${chip}</bronco-chip>
 `)}
 
-    <input placeholder="Add tag" type="text" class="form-control ${this.chips.length ? 'not-empty' : ''}" name="tag"  id="tag"  @keyup=${(e: any) => this.submitChip(e)}>
+    <input focus="true" placeholder="Add tag" type="text" class="form-control ${this.chips.length ? 'not-empty' : ''}" name="tag"  id="tag"  @keyup=${(e: any) => this.submitChip(e)}>
 </div>
 `;
   }
