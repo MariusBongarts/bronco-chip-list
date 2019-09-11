@@ -58,7 +58,7 @@ export class BroncoChipList extends LitElement {
     document.addEventListener('click', () => this.markedToDelete = false);
 
     document.addEventListener('blur', (e) => console.log(e));
-    this.focused ? this.focus() : '';
+    this.focused ? this.inputElement.focus() : '';
   }
 
   emit() {
