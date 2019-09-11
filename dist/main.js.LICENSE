@@ -1192,6 +1192,12 @@
          */
 
 /**
+         * Property to set focus on input initially
+         *
+         * @memberof BroncoChipList
+         */
+
+/**
          * Property to prevent to fast deleting. So that user has to click backspace twice.
          *
          * @memberof BroncoChipList
@@ -1219,6 +1225,13 @@
      * @param {HTMLInputElement} target
      * @memberof BroncoChipList
      */
+
+/**
+ * A property decorator that converts a class property into a getter
+ * that executes a querySelectorAll on the element's renderRoot.
+ *
+ * @ExportDecoratedItems
+ */
 
 // This callback is called once the class is otherwise fully defined
 

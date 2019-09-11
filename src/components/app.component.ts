@@ -18,6 +18,8 @@ const componentCSS = require('./app.component.scss');
 export class BroncoChipList extends LitElement {
   static styles = css`${unsafeCSS(componentCSS)}`;
 
+  @query('#tag') inputElement!: HTMLInputElement;
+
   /**
    * Array of tags as strings
    *
@@ -25,6 +27,15 @@ export class BroncoChipList extends LitElement {
    */
   @property()
   chips = [] as string[];
+
+
+  /**
+   * Property to set focus on input initially
+   *
+   * @memberof BroncoChipList
+   */
+  @property()
+  focused = false;
 
   /**
    * Property to prevent to fast deleting. So that user has to click backspace twice.
@@ -36,6 +47,7 @@ export class BroncoChipList extends LitElement {
 
   firstUpdated() {
     document.addEventListener('click', () => this.markedToDelete = false);
+    this.focused ? this.inputElement.focus() : '';
   }
 
   emit() {
